@@ -28,21 +28,23 @@ createFullName.innerHTML = `
 `;
 
 loginBtn.onclick = function () {
-    if (!this.classList.contains('active')) {
-        formGroups = document.querySelectorAll(".form-group");
-        form1.removeChild(formGroups[0]);
-        this.classList.add("active");
-        registerBtn.classList.remove("active");
-        btnSubmit.innerHTML = 'Đăng nhập'
-    }
+	if (!this.classList.contains("active")) {
+		formGroups = document.querySelectorAll(".form-group");
+		form1.removeChild(formGroups[0]);
+		this.classList.add("active");
+		registerBtn.classList.remove("active");
+		btnSubmit.innerHTML = "Đăng nhập";
+	}
 };
 
 registerBtn.onclick = function () {
-	formGroups = document.querySelectorAll(".form-group");
-	form1.insertBefore(createFullName, form1.children[2]);
-	this.classList.add("active");
-	loginBtn.classList.remove("active");
-    btnSubmit.innerHTML = 'Đăng ký'
+	if (!this.classList.contains("active")) {
+		formGroups = document.querySelectorAll(".form-group");
+		form1.insertBefore(createFullName, form1.children[2]);
+		this.classList.add("active");
+		loginBtn.classList.remove("active");
+		btnSubmit.innerHTML = "Đăng ký";
+	}
 };
 
 function Validator(formSelector) {
