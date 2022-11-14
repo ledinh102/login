@@ -27,6 +27,13 @@ createFullName.innerHTML = `
         <span class="form-message"></span>
 `;
 
+function removeError() {
+	for (var i = 0; i < formGroups.length; i++) {
+		formGroups[i].classList.remove("invalid");
+		formGroups[i].querySelector('.form-message').innerHTML = "";
+	}
+}
+
 loginBtn.onclick = function () {
 	if (!this.classList.contains("active")) {
 		formGroups = document.querySelectorAll(".form-group");
@@ -34,6 +41,7 @@ loginBtn.onclick = function () {
 		this.classList.add("active");
 		registerBtn.classList.remove("active");
 		btnSubmit.innerHTML = "Đăng nhập";
+		removeError();
 	}
 };
 
@@ -44,6 +52,7 @@ registerBtn.onclick = function () {
 		this.classList.add("active");
 		loginBtn.classList.remove("active");
 		btnSubmit.innerHTML = "Đăng ký";
+		removeError();
 	}
 };
 
@@ -69,7 +78,9 @@ function Validator(formSelector) {
 		},
 		email: function (value) {
 			var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-			return regex.test(value) ? undefined : "Vui lòng nhập nhập đúng định dạng email";
+			return regex.test(value)
+				? undefined
+				: "Vui lòng nhập nhập đúng định dạng email";
 		},
 		min: function (min) {
 			return function (value) {
