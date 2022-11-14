@@ -36,8 +36,7 @@ function removeError() {
 
 loginBtn.onclick = function () {
 	if (!this.classList.contains("active")) {
-		formGroups = document.querySelectorAll(".form-group");
-		form1.removeChild(formGroups[0]);
+		formGroups[0].style.display = "none"
 		this.classList.add("active");
 		registerBtn.classList.remove("active");
 		btnSubmit.innerHTML = "Đăng nhập";
@@ -47,14 +46,14 @@ loginBtn.onclick = function () {
 
 registerBtn.onclick = function () {
 	if (!this.classList.contains("active")) {
-		formGroups = document.querySelectorAll(".form-group");
-		form1.insertBefore(createFullName, form1.children[2]);
+		formGroups[0].style.display = "flex"
 		this.classList.add("active");
 		loginBtn.classList.remove("active");
 		btnSubmit.innerHTML = "Đăng ký";
 		removeError();
 	}
 };
+
 
 // Đối tượng `Validator`
 function Validator(options) {
