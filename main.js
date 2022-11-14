@@ -69,7 +69,7 @@ function Validator(formSelector) {
 		},
 		email: function (value) {
 			var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-			return regex.test(value) ? undefined : "Vui lòng nhập nhập email";
+			return regex.test(value) ? undefined : "Vui lòng nhập nhập đúng định dạng email";
 		},
 		min: function (min) {
 			return function (value) {
