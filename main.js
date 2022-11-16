@@ -107,57 +107,57 @@ function Validator(options) {
     var formElement = document.querySelector(options.form);
     if (formElement) {
         // Khi submit form
-        formElement.onsubmit = function (e) {
-            e.preventDefault();
+        // formElement.onsubmit = function (e) {
+        //     // e.preventDefault();
 
-            var isFormValid = true;
+        //     var isFormValid = true;
 
-            // Lặp qua từng rules và validate
-            options.rules.forEach(function (rule) {
-                var inputElement = formElement.querySelector(rule.selector);
-                var isValid = validate(inputElement, rule);
-                if (!isValid) {
-                    isFormValid = false;
-                }
-            });
+        //     // Lặp qua từng rules và validate
+        //     options.rules.forEach(function (rule) {
+        //         var inputElement = formElement.querySelector(rule.selector);
+        //         var isValid = validate(inputElement, rule);
+        //         if (!isValid) {
+        //             isFormValid = false;
+        //         }
+        //     });
 
-            if (isFormValid) {
-                // Trường hợp submit với javascript
-                if (typeof options.onSubmit === 'function') {
-                    var enableInputs = formElement.querySelectorAll('[name]');
-                    var formValues = Array.from(enableInputs).reduce(function (values, input) {
+        //     if (isFormValid) {
+        //         // Trường hợp submit với javascript
+        //         if (typeof options.onSubmit === 'function') {
+        //             var enableInputs = formElement.querySelectorAll('[name]');
+        //             var formValues = Array.from(enableInputs).reduce(function (values, input) {
                         
-                        switch(input.type) {
-                            case 'radio':
-                                values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
-                                break;
-                            case 'checkbox':
-                                if (!input.matches(':checked')) {
-                                    values[input.name] = '';
-                                    return values;
-                                }
-                                if (!Array.isArray(values[input.name])) {
-                                    values[input.name] = [];
-                                }
-                                values[input.name].push(input.value);
-                                break;
-                            case 'file':
-                                values[input.name] = input.files;
-                                break;
-                            default:
-                                values[input.name] = input.value;
-                        }
+        //                 switch(input.type) {
+        //                     case 'radio':
+        //                         values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
+        //                         break;
+        //                     case 'checkbox':
+        //                         if (!input.matches(':checked')) {
+        //                             values[input.name] = '';
+        //                             return values;
+        //                         }
+        //                         if (!Array.isArray(values[input.name])) {
+        //                             values[input.name] = [];
+        //                         }
+        //                         values[input.name].push(input.value);
+        //                         break;
+        //                     case 'file':
+        //                         values[input.name] = input.files;
+        //                         break;
+        //                     default:
+        //                         values[input.name] = input.value;
+        //                 }
 
-                        return values;
-                    }, {});
-                    options.onSubmit(formValues);
-                }
-                // Trường hợp submit với hành vi mặc định
-                else {
-                    formElement.submit();
-                }
-            }
-        }
+        //                 return values;
+        //             }, {});
+        //             options.onSubmit(formValues);
+        //         }
+        //         // Trường hợp submit với hành vi mặc định
+        //         else {
+        //             formElement.submit();
+        //         }
+        //     }
+        // }
 
         // Lặp qua mỗi rule và xử lý (lắng nghe sự kiện blur, input, ...)
         options.rules.forEach(function (rule) {
